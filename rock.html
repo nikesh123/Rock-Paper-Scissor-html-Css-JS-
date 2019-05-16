@@ -1,0 +1,182 @@
+<html>
+<head>
+<style>
+.*{
+margin: 0;
+padding: 0;
+}
+
+header{
+background: white;
+}
+
+header > h1{
+color: black;
+text-align: center;
+font-family: Asap, sans-serif;
+}
+.score-board{
+	margin: 30px auto;
+	border: 4px solid blue;
+	width: 200px;
+	color: black;
+	font-size: 46px;
+	text-align: center;
+	position: relative;
+}
+.badge{
+padding:2px 10px;
+font-size: 14px;
+background: red;
+color: white;
+}
+
+#user-label{
+position: absolute;
+top: 20px;
+left: -20px;
+}
+
+#comp-label{
+position: absolute;
+top: 20px;
+right: -20px;
+}
+
+.choices{
+margin: 50px 0;
+text-align: center;
+}
+
+.choice{
+	 border: 4px solid blue;
+	 border-radius: 50%;
+	 margin: 0 20px;
+	 padding: 10px;
+	display: inline-block;
+	transition: all 0.5s ease;
+	}
+
+.choice:hover{
+cursor: pointer;
+background: yellow;
+}
+
+.result > p{
+font-size: 25px;
+font-family: Asap,sans-serif;
+font-weight: bold;
+}
+
+#action-message{
+text-align: center;
+margin-top: 20px;
+font-size:30px;
+font-family: Asap, sans-serif;
+font-color: blue;
+}
+</style>
+<header>
+<h1>
+Rock Paper Scissors
+</h1>
+</header>
+<body>
+<div class = "score-board">
+<div id="user-label" class = "badge">user</div>
+<div id = "comp-label" class = "badge">comp</div>
+<span id="user-score">0</span>:<span id = "comp-score">0</span>
+</div>
+
+<div class = "result">
+<p>Paper Covers Rock. You win</p>
+</div>
+
+<div class="choices">
+<div class="choice">
+<img src="https://cdn2.iconfinder.com/data/icons/hand-gestures-2-1/128/Rock-Hand-Game-Right-Gesture-Win-512.png" width=10% id="r" alt="">
+</div>
+
+<div class="choice">
+<img src="https://previews.123rf.com/images/julinzy/julinzy1310/julinzy131000180/23262904-hand-sign-of-rock-paper-scissors-game-isolated-vector-on-white-background.jpg" width=10% id="p" alt="">
+</div>
+
+<div class="choice">
+<img src="https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/8Ofcko1/mans-hand-playing-game-rock-paper-scissors_ny0oicm4e__S0010.jpg" width=15% id="s" alt="">
+</div>
+</div>
+<p id="action-message">Make Your Move</p>
+<script type=text/javascript>
+let userScore = 0;
+let compScore = 0;
+const userScore_span = document.getElementById("user-score");
+const compScore_span = document.getElementById("comp-score");
+const result_div = document.querySelector(".result");
+const rock_div = document.getElementById("r");
+const paper_div = document.getElementById("p");
+const scissor_div = document.getElementById("s");
+
+function getComputerChoice(){
+const choices = ['r', 'p', 's'];
+const randomnumber = Math.floor(Math.random() * 3);
+return choices[randomnumber];
+}
+
+function win(){
+userScore++;
+userScore_span.innerHTML = userScore;
+console.log("User Score is:" +userScore);
+}
+function lose()
+{
+compScore++;
+compScore_span.innerHTML = compScore;
+console.log("Computer Wins");
+console.log("Computer's Score is:" +compScore);
+}
+function draw()
+{
+console.log("Its a Draw");
+}
+function game(userChoice)
+{
+const compChoice = getComputerChoice();
+switch(userChoice + compChoice){
+case "pr":
+case "rs":
+case "sp": 
+win();
+break;
+
+case "rp":
+case "sr":
+case "ps":
+lose();
+break;
+case "rr":
+case "pp":
+case "ss":
+draw();
+break;
+}
+}
+function main(){
+rock_div.addEventListener('click', function()
+{
+game("r");
+})
+
+paper_div.addEventListener('click', function()
+{
+game("p");
+})
+
+scissor_div.addEventListener('click', function()
+{
+game("s");
+})
+}
+main();
+
+</script>
+</html>
